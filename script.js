@@ -1,17 +1,20 @@
 const elementById = (id) => {
-  document.getElementById(id);
+  const search = document.getElementById(id);
+  return search;
 };
 
 const handleSearch = () => {
-  const keyword = elementById("keyword");
-  const url = `https://theaudiodb.com/api/v1/json/2/search.php?s=${keyword.value}`;
+  const keyword = elementById("keyword").value;
+  console.log(keyword);
+  const url = `https://theaudiodb.com/api/v1/json/2/search.php?s=${keyword}`;
+  console.log(url)
   fetch(url)
     .then((res) => res.json())
     .then((data) => showArtists(data));
 };
 
 const showArtists = (data) => {
-  const artistContainer = elementById("artist");
+  const artistContainer = elementById("artists");
   data?.artists?.forEach((artist) => {
     const div = document.createElement("div");
     div.classList.add("artist-card");
